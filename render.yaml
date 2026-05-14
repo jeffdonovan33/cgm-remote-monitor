@@ -1,1 +1,27 @@
-
+services:
+  - type: web
+    name: nightscout
+    runtime: node
+    plan: free
+    branch: master
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: API_SECRET
+        sync: false
+      - key: DISPLAY_UNITS
+        value: mg/dl
+      - key: ENABLE
+        value: careportal basal dbsize rawbg iob maker bridge cob bwp cage iage sage boluscalc pushover treatmentnotify mmconnect loop pump profile food openaps bage alexa override speech cors
+      - key: AUTH_DEFAULT_ROLES
+        value: denied
+      - key: TIME_FORMAT
+        value: 12
+      - key: NODE_VERSION
+        value: 20.15.0
+      - key: INSECURE_USE_HTTP
+        value: "false"
+      - key: SECURE_HSTS_HEADER
+        value: "true"
